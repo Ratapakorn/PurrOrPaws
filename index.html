@@ -47,6 +47,14 @@
       <input id="thresh" type="range" min="0.10" max="0.90" step="0.01" value="0.410" />
     </div>
 
+     <div class="row" style="margin-top:.5rem;">
+    <button id="cam">Use camera</button>
+    <button id="snap" disabled>Capture</button>
+    <button id="stop" disabled>Stop</button>
+  </div>
+  <video id="video" autoplay playsinline
+         style="display:none; max-width:100%; border-radius:10px; margin-top:.5rem;"></video>
+
     <div id="drop" style="margin-top:.5rem;">Drag & drop an image here</div>
 
     <div class="grid">
@@ -60,8 +68,6 @@
 
   <!-- onnxruntime-web -->
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.0/dist/ort.min.js"></script>
-  <script defer src="./app.js?v=4"></script>
-
+  <script defer src="./app.js"></script>
 </body>
 </html>
-

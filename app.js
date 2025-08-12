@@ -23,10 +23,10 @@ const drop      = document.getElementById("drop");
 
 // UI init
 fileInput.disabled = true; sampleBtn.disabled = true;
-tVal.textContent = THRESHOLD.toFixed(3);
+tVal && (tVal.textContent = THRESHOLD.toFixed(3));
 tSlider?.addEventListener("input", () => {
   THRESHOLD = parseFloat(tSlider.value);
-  tVal.textContent = THRESHOLD.toFixed(3);
+  if (tVal) tVal.textContent = THRESHOLD.toFixed(3);
 });
 
 // Drag & drop
@@ -128,7 +128,17 @@ async function runPrediction(img) {
 
   const cls = pDog >= THRESHOLD ? "dog" : "cat";
   const conf = pDog >= THRESHOLD ? pDog : 1 - pDog;
-  out.textContent = `Prediction: ${cls} (pDog=${pDog.toFixed(3)}, t=${THRESHOLD.toFixed(3)}, confidence=${conf.toFixed(2)}, ${ms} ms)`;
+
+  // Inline styles so you don't need a CSS file
+  const iconStyle = 'font-size:1.6rem;vertical-align:-2px;margin-right:.4rem;';
+  const mutedStyle = 'color:#666;';
+  const emoji = cls === "dog" ? "🐶" : "🐱";
+
+  out.innerHTML =
+    `<span style="${iconStyle}" aria-hidden="true">${emoji}</span>` +
+    `<strong>${cls.toUpperCase()}</strong> ` +
+    `<span style="${mutedStyle}">(pDog=${pDog.toFixed(3)}, t=${THRESHOLD.toFixed(3)}, ` +
+    `confidence=${conf.toFixed(2)}, ${ms} ms)</span>`;
 }
 
 // File + sample handlers

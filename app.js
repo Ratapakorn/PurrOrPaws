@@ -132,7 +132,8 @@ async function runPrediction(img) {
   // Inline styles so you don't need a CSS file
   const iconStyle = 'font-size:1.6rem;vertical-align:-2px;margin-right:.4rem;';
   const mutedStyle = 'color:#666;';
-  const emoji = cls === "dog" ? "🐶" : "🐱";
+  // const emoji = cls === "dog" ? "🐶" : "🐱";
+  const emoji = cls === "dog" ? "\u{1F436}" : "\u{1F431}";
 
   out.innerHTML =
     `<span style="${iconStyle}" aria-hidden="true">${emoji}</span>` +
@@ -155,3 +156,4 @@ sampleBtn.addEventListener("click", () => {
 
 // Go
 init();
+
